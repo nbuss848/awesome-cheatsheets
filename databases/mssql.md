@@ -12,6 +12,25 @@ ALTER TABLE [table] DROP COLUMN col1;
 ALTER TABLE [Table] ALTER COLUMN [Column] INTEGER NOT NULL
 -- will add pkey to columnname1 and columnname2
 ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2); 
+
+# Where tricks
+```sql
+	WHERE
+		(@SkuStartsWith IS NULL OR LTRIM(RTRIM(@SkuStartsWith)) = '' OR v.SKU LIKE '' + @SkuStartsWith + '%')
+		AND (@InventoryDate IS NULL OR (@InventoryDate IS NOT NULL AND @InventoryDate >= StartDate AND (EndDate IS NULL OR @InventoryDate <= EndDate))) -- if we're using date
+		AND (@InventoryId IS NULL OR (@InventoryId IS NOT NULL and v.InventoryId = @InventoryId))
+		AND (@ShowOnlyCountedSkus = 0 AND (Qty_BackstockCount IS NOT NULL OR Qty_BinCount IS NOT NULL) -- PARTIAL
+			OR (@ShowOnlyCountedSkus = 1 AND (--(Qty_BackstockCount IS NOT NULL OR Qty_Backstock =0) AND 
+			(Qty_BinCount IS NOT NULL))) -- FULL
+			OR (@ShowOnlyCountedSkus IS NULL) -- ALL
+		)
+		AND (@ShowOnlySkusWithVariance = 0 AND ((ISNULL(Qty_BackstockCount, 0) - ISNULL(Qty_Backstock,0)) + (ISNULL(Qty_BinCount,0) - ISNULL(Qty_BinCalc, 0)) = 0)-- skus without variance ... means everything matches
+			OR (@ShowOnlySkusWithVariance = 1 AND ((ISNULL(Qty_BackstockCount, 0) - ISNULL(Qty_Backstock,0)) + (ISNULL(Qty_BinCount,0) - ISNULL(Qty_BinCalc, 0)) <> 0)) -- skus with variance
+			OR (@ShowOnlySkusWithVariance IS NULL) -- all
+		)
+		AND (@ShowIsDone IS NULL OR (s.IsDone = @ShowIsDone))
+	
+	ORDER BY v.SKU, v.InventoryId
 ```
 # Utilities
 ### Reset identity column back to 1
