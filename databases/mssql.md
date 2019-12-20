@@ -12,6 +12,7 @@ ALTER TABLE [table] DROP COLUMN col1;
 ALTER TABLE [Table] ALTER COLUMN [Column] INTEGER NOT NULL
 -- will add pkey to columnname1 and columnname2
 ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2); 
+```
 
 # Where tricks
 ```sql
