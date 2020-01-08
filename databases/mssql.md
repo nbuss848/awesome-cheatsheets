@@ -137,3 +137,22 @@ and c.id is null
 ### BETWEEN ###
 The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates. The BETWEEN operator is inclusive: begin and end values are included.
 
+### DATENAME ###
+```sql
+SELECT DATENAME(datepart,'2007-10-30 12:15:32.1234567 +05:10')
+```
+Here is the result set.
+
+| datepart | 	Return value |
+| ----------- | ------------- |
+| month, mm, m |	October
+| dayofyear, dy, y| 	303 |
+| day, dd, d	   | 30 |
+| week, wk, ww |	44 |
+| weekday, dw	| Tuesday |
+| hour, hh	| 12 | 
+| minute, n	| 15 |
+| second, ss, s	| 32 |
+| ISO_WEEK, ISOWK, ISOWW |	44 |
+
+[Read More](https://docs.microsoft.com/en-us/sql/t-sql/functions/datename-transact-sql?view=sql-server-ver15)
