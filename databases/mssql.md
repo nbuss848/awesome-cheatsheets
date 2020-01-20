@@ -157,3 +157,16 @@ and c.id is null
 ### BETWEEN ###
 The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates. The BETWEEN operator is inclusive: begin and end values are included.
 
+### Valid Email ###
+```sql
+	NOT( patindex ('%[ &'',":;!+=\/()<>]%', email) > 0 -- Invalid characters 4 
+		 or patindex ('[@.-_]%', email) > 0 -- Valid but cannot be starting character
+		 or patindex ('%[@.-_]', email) > 0 -- Valid but cannot be ending character
+		 or email not like '%@%.%' -- Must contain at least one @ and one .
+		 or email like '%..%' -- Cannot have two periods in a row
+		 or email like '%@%@%' -- Cannot have two @ anywhere
+		 or email like '%.@%' or email like '%@.%' -- Cannot have @ and . next to each other
+		 or email like '%.cm' or email like '%.co' -- Camaroon or Colombia? Typos. 
+		 or email like '%.or' or email like '%.ne'
+		 or email is null or email = '') -- Missing last letter
+```
