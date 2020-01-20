@@ -122,8 +122,8 @@ select convert(varchar(20),cast('Feb 18 2017 10:03AM' as datetime),20) -- result
 		 or email like '%@%@%' -- Cannot have two @ anywhere
 		 or email like '%.@%' or email like '%@.%' -- Cannot have @ and . next to each other
 		 or email like '%.cm' or email like '%.co' -- Camaroon or Colombia? Typos. 
-		 or email like '%.or' or email like '%.ne'
-		 or email is null or email = '') -- Missing last letter
+		 or email like '%.or' or email like '%.ne' -- Missing last letter
+		 or email is null or email = '') 
 ```
 
 # Advanced #
