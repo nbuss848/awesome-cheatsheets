@@ -397,4 +397,10 @@ CHEATSHEET C#
                                                         e.Modifiers – Indicates if Alt, Ctrl, or Shift key.
     KeyPress                                        KeyPressEventHandler(object sender, KeyPressEventArgs e)
 
-
+16. LINQ
+// Left outer join example
+from d in orders
+join n in lines on d.OrderId equals n.OrderId into ps
+from n in ps.DefaultIfEmpty()
+where (n == null || n.Order.Id == OrderId) 
+select d;
