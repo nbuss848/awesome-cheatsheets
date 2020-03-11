@@ -15,24 +15,20 @@ ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2);
 ```
 
 # Where tricks
+### Parameter Not Required ###
 ```sql
-	WHERE
-		(@SkuStartsWith IS NULL OR LTRIM(RTRIM(@SkuStartsWith)) = '' OR v.SKU LIKE '' + @SkuStartsWith + '%')
-		AND (@InventoryDate IS NULL OR (@InventoryDate IS NOT NULL AND @InventoryDate >= StartDate AND (EndDate IS NULL OR @InventoryDate <= EndDate))) -- if we're using date
-		AND (@InventoryId IS NULL OR (@InventoryId IS NOT NULL and v.InventoryId = @InventoryId))
-		AND (@ShowOnlyCountedSkus = 0 AND (Qty_BackstockCount IS NOT NULL OR Qty_BinCount IS NOT NULL) -- PARTIAL
-			OR (@ShowOnlyCountedSkus = 1 AND (--(Qty_BackstockCount IS NOT NULL OR Qty_Backstock =0) AND 
-			(Qty_BinCount IS NOT NULL))) -- FULL
-			OR (@ShowOnlyCountedSkus IS NULL) -- ALL
-		)
-		AND (@ShowOnlySkusWithVariance = 0 AND ((ISNULL(Qty_BackstockCount, 0) - ISNULL(Qty_Backstock,0)) + (ISNULL(Qty_BinCount,0) - ISNULL(Qty_BinCalc, 0)) = 0)-- skus without variance ... means everything matches
-			OR (@ShowOnlySkusWithVariance = 1 AND ((ISNULL(Qty_BackstockCount, 0) - ISNULL(Qty_Backstock,0)) + (ISNULL(Qty_BinCount,0) - ISNULL(Qty_BinCalc, 0)) <> 0)) -- skus with variance
-			OR (@ShowOnlySkusWithVariance IS NULL) -- all
-		)
-		AND (@ShowIsDone IS NULL OR (s.IsDone = @ShowIsDone))
-	
-	ORDER BY v.SKU, v.InventoryId
+	WHERE ( @productnumber IS NULL OR 
+			LTRIM(RTRIM(@productnumber)) = '' OR v.SKU LIKE '' + @productnumber + '%')
+		AND (@Addeddate IS NULL 
+			OR (@Addeddate IS NOT NULL AND @Addeddate >= StartDate 
+				AND (EndDate IS NULL OR @Addeddate <= EndDate))
+			)
 ```
+### Find Non-Whole Decimals ###
+```sql
+where convert(decimal(18,2), FIELDNAME, 0) - FIELDNAME <> 0
+```
+
 # Utilities
 ### Reset identity column back to 1
 Will make it so the next insert will have an ID of 2
