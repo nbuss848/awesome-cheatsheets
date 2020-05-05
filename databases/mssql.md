@@ -15,7 +15,7 @@ ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2);
 ```
 ### Add default value ###
 ```sql
-alter table #AllSkus add IsUsed bit NOT NULL DEFAULT(0)
+alter table [Table] add IsUsed bit NOT NULL DEFAULT(0)
 ```
 
 # Where tricks
