@@ -13,6 +13,10 @@ ALTER TABLE [Table] ALTER COLUMN [Column] INTEGER NOT NULL
 -- will add pkey to columnname1 and columnname2
 ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2); 
 ```
+### Add default value ###
+```sql
+alter table #AllSkus add IsUsed bit NOT NULL DEFAULT(0)
+```
 
 # Where tricks
 ### Parameter Not Required ###
