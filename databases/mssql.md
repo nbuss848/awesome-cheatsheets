@@ -1,3 +1,18 @@
+# System Level Tables #
+### Query Tables
+```sql
+select * from sys.tables order by modify_date desc
+```
+### Check Connection Pools ###
+```sql
+select * from sys.configurations
+where name ='user connections'
+```
+### Check Current Connections ###
+```sql
+select * from sys.dm_os_performance_counters
+where counter_name ='User Connections'
+```
 # Alter Table Statements #
 ### Remove auto increment ##
 ```sql
@@ -76,11 +91,6 @@ PIVOT(
 MAX(totalqty)
   FOR dateadded in([01],[02],[03],[04],[05],[06],[07],[08],[09],[10],[11],[12])
 ) as p
-```
-
-### Query Tables
-```sql
-select * from sys.tables order by modify_date desc
 ```
 
 ### Toggle Identity Insert
