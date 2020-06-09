@@ -47,6 +47,11 @@ alter table [Table] add IsUsed bit NOT NULL DEFAULT(0)
 ```sql
 where convert(decimal(18,2), FIELDNAME, 0) - FIELDNAME <> 0
 ```
+### Quarter Of a Date Field  ###
+```sql
+-- First quarter of the year
+where ((Month([Date]) - 1) % 4) + 1 = 1
+```
 
 # Utilities
 ### Reset identity column back to 1
