@@ -32,6 +32,18 @@ ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2);
 ```sql
 alter table [Table] add IsUsed bit NOT NULL DEFAULT(0)
 ```
+# JOIN
+### CROSS JOIN ###
+```sql
+SELECT  Orders.OrderNumber, LineItems2.Quantity, LineItems2.Description
+FROM    Orders
+CROSS APPLY
+        (
+        SELECT  TOP 1 LineItems.Quantity, LineItems.Description
+        FROM    LineItems
+        WHERE   LineItems.OrderID = Orders.OrderID
+        ) LineItems2
+```
 
 # Where tricks
 ### Parameter Not Required ###
