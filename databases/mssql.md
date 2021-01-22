@@ -71,6 +71,10 @@ Will make it so the next insert will have an ID of 2
 ```sql
 DBCC CHECKIDENT ('[Table]', RESEED, 1)
 ```
+### Default Value In Output Parameter ###
+```sql
+@parameterName varchar(50) = null output
+```
 ### See what is inside a stored procedure without modifying it
 sp_helptext N'[Stored Procedure Name]'
 
