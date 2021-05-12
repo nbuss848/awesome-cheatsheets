@@ -93,6 +93,18 @@ select convert(varchar(20),cast('Feb 18 2017 10:03AM' as datetime),20) -- result
 ```
 
 # Advanced #
+### Cross Apply 
+```sql
+	select d.ProductId, d.Price1, b.Price as PromotionPrice, b.Description as PromotionDescription
+	from #details d
+	inner join product p on p.ProductId = d.ProductId 
+	CROSS APPLY(
+		select top 1 * from Promotions promo
+		where promo.ProductId = p.ProductId and promo.price = 2.99
+		order by p.enddate desc
+	) as b
+```
+
 ### Search for fields in the current database
 ```sql
 DECLARE @searchtext varchar(60); SET @searchtext = 'fieldname';
