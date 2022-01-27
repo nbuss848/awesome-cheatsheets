@@ -26,7 +26,10 @@ sp_helptext N'[Stored Procedure Name]'
 ```sql
 select AscII (right(sku,1) ) as lastchar 
 ```
-
+### Round decimal to two places and round down
+```sql
+ROUND(AMOUNT, 2, 1)
+```
 ### Put Stored Procedure Result Into Table
 ```sql
 declare @table Table([Object Name] varchar(100), txt varchar(500))
