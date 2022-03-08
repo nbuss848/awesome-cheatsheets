@@ -14,6 +14,11 @@ ALTER TABLE [Table] ALTER COLUMN [Column] INTEGER NOT NULL
 ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2); 
 ```
 # Utilities
+### Random Number Per Row ###
+```sql
+ABS(CHECKSUM(NewId())) % 14
+```
+
 ### Reset identity column back to 1
 Will make it so the next insert will have an ID of 2
 ```sql
