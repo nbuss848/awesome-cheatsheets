@@ -96,6 +96,20 @@ select convert(varchar(20),cast('Feb 18 2017 10:03AM' as datetime),20) -- result
 ```
 
 # Advanced #
+### List columns of table comma separated ###
+```sql
+select top 1    
+    stuff((
+        select ',' + c.[name]
+        from sys.tables t inner join sys.columns c on c.object_id = t.object_id
+where t.name = 'TABLENAME'
+        order by c.column_id
+        for xml path('')
+    ),1,1,'') as name_csv
+from sys.columns
+group by object_id
+```
+
 ### Cross Apply 
 ```sql
 	select d.ProductId, d.Price1, b.Price as PromotionPrice, b.Description as PromotionDescription
