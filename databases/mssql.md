@@ -66,6 +66,16 @@ MAX(totalqty)
 select * from sys.tables order by modify_date desc
 ```
 
+### Check if column exists ###
+```sql
+IF EXISTS(SELECT object_id FROM sys.columns 
+          WHERE Name = N'columnName'
+          AND Object_ID = Object_ID(N'schemaName.tableName'))
+BEGIN
+    -- Column Exists
+END
+```
+
 ### Toggle Identity Insert
 ```sql
 SET IDENTITY_INSERT TableName ON
