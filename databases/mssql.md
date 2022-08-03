@@ -76,6 +76,17 @@ BEGIN
 END
 ```
 
+### Check if table exists ###
+```sql
+IF (EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_SCHEMA = 'TheSchema' 
+                 AND  TABLE_NAME = 'TheTable'))
+BEGIN
+    --Do Stuff
+END
+```
+
 ### Toggle Identity Insert
 ```sql
 SET IDENTITY_INSERT TableName ON
