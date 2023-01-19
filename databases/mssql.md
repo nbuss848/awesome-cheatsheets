@@ -87,6 +87,12 @@ BEGIN
 END
 ```
 
+### Select Random Row From Table ###
+```sql
+SELECT TOP 1 column FROM table  
+ORDER BY NEWID()
+```
+
 ### Toggle Identity Insert
 ```sql
 SET IDENTITY_INSERT TableName ON
