@@ -63,6 +63,7 @@ arr.length                                           // Reflects the number of e
 arr.copyWithin(target, start, end)                   // Copies a sequence of array elements within the array.
 arr.fill(value, start, end)                          // Fills all the elements of an array from a start index to an end index with a static value.
 arr.pop()                                            // Removes the last element from an array and returns that element.
+arr.flat()                                           // merges nested array into one single array
 arr.push([element1[, ...[, elementN]]])              // Adds one or more elements to the end of an array and returns the new length of the array.
 arr.reverse()                                        // Reverses the order of the elements of an array in place — the first becomes the last, and the last becomes the first.
 arr.shift()                                          // Removes the first element from an array and returns that element.
@@ -71,6 +72,7 @@ array.splice(start, deleteCount, item1, item2, ...)  // Adds and/or removes elem
 arr.unshift([element1[, ...[, elementN]]])           // Adds one or more elements to the front of an array and returns the new length of the array.
 
 // Instance: accessor methods
+arr.at(index)                                        // Returns the element at the specified index in the array.
 arr.concat(value1[, value2[, ...[, valueN]]])        // Returns a new array comprised of this array joined with other array(s) and/or value(s).
 arr.includes(searchElement, fromIndex)               // Determines whether an array contains a certain element, returning true or false as appropriate.
 arr.indexOf(searchElement[, fromIndex])              // Returns the first (least) index of an element within the array equal to the specified value, or -1 if none is found.
