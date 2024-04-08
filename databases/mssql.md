@@ -19,6 +19,13 @@ ALTER TABLE [Table] ADD PRIMARY KEY(Columnname1, columnname2);
 ABS(CHECKSUM(NewId())) % 14
 ```
 
+### Round Number To First Decimal Place
+Input : 178.100002
+Output: 178.2
+```sql
+select ceiling(178.1 * 10)/10
+```
+
 ### Reset identity column back to 1
 Will make it so the next insert will have an ID of 2
 ```sql
