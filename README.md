@@ -89,13 +89,13 @@ Feel free to take a look. You might learn new things. They have been designed to
 #### SQL
 
 - [MySQL](databases/mysql.sh)
-
+- [MSSQL](databases/mssql.md)
+  
 #### NoSQL
 
 - [Redis](databases/redis.sh)
+- [Cosmos](databases/cosmos.md)
 
-#### SQL ####
-- [Relational](databases/mssql.md)
   </details>
 
 ### 🔧 Tools
