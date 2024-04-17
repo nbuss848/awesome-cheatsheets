@@ -74,7 +74,7 @@ MAX(totalqty)
 ```
 
 ### Unpivot Example
-```
+```sql
 select *, CAST(right(z,2) as int) as MONTH 
 from
 (
