@@ -3,7 +3,7 @@
 SELECT value count(1) FROM c
 ```
 
-### Query collection without a property
+### Query collection without a property OR at specific value
 ```cosmos
 where (c.color = @color OR NOT IS_DEFINED(c.color))
 ```
