@@ -73,6 +73,31 @@ MAX(totalqty)
 ) as p
 ```
 
+### Unpivot Example
+```
+select *, CAST(right(z,2) as int) as MONTH 
+from
+(
+  select r.Id, 
+  r.[01], 
+  r.[02], 
+  r.[03],
+  r.[04],
+  r.[05],
+  r.[06],
+  r.[07],
+  r.[08],
+  r.[09],
+  r.[10],
+  r.[11],
+  r.[12],
+  from Months r
+  ) as sourcetable3
+  UNPIVOT
+  (TotalProfit for z in ([01], [02], [03], [04], [05], [06], [07], [08], [09], [10], [11], [12])) as m
+
+```
+
 ### Query Tables
 ```sql
 select * from sys.tables order by modify_date desc
