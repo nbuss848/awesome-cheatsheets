@@ -236,6 +236,25 @@ where getdate() between c.StartDate and c.EndDate
 and c.id is null
 ```
 
+### List index sizes ###
+```sql
+SELECT a.index_id, 
+       NAME, 
+       avg_fragmentation_in_percent, 
+       fragment_count, 
+       avg_fragment_size_in_pages 
+FROM   sys.Dm_db_index_physical_stats(Db_id('dbName'), Object_id('tableName'), 
+       NULL, 
+              NULL, NULL) AS a 
+       INNER JOIN sys.indexes b 
+               ON a.object_id = b.object_id 
+                  AND a.index_id = b.index_id 
+```
+### REBUILD ALL INDEXES ON TABLE ###
+```sql
+DBCC DBREINDEX ('table_Name')
+```
+
 # Operators #
 ### BETWEEN ###
 The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates. The BETWEEN operator is inclusive: begin and end values are included.
