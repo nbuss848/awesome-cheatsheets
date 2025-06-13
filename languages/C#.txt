@@ -404,3 +404,7 @@ join n in lines on d.OrderId equals n.OrderId into ps
 from n in ps.DefaultIfEmpty()
 where (n == null || n.Order.Id == OrderId) 
 select d;
+
+17. Configuration
+// support an array of strings in an appsettings.json file
+var myArray = _config.GetSection("MyArray").Get<string[]>();
