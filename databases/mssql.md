@@ -236,6 +236,15 @@ where getdate() between c.StartDate and c.EndDate
 and c.id is null
 ```
 
+#### Keep in mind that you can also use Row_Number() to partition by a particular 
+```sql
+-- For each month restart the row identifier count
+select ROW_NUMBER() OVER (PARTITION BY CONVERT(varchar(2), o.createdate, 101) ORDER BY o.ID) AS ROW#, c.clubid
+from order o right outer join Club c on c.orderid = o.orderid
+where getdate() between c.StartDate and c.EndDate
+and c.id is null
+```
+
 ### List index sizes ###
 ```sql
 SELECT a.index_id, 
