@@ -270,7 +270,7 @@ The BETWEEN operator selects values within a given range. The values can be numb
 
 ### Convert UTC into CST ###
 ```sql
-CAST(CreateDateUtc AT TIME ZONE 'UTC' AT TIME ZONE 'Central Standard Time' AS datetime) AS CreateDateCST
+select CAST(CreateDateUtc AT TIME ZONE 'UTC' AT TIME ZONE 'Central Standard Time' AS datetime) AS CreateDateCST
 ```
 
 ### DATENAME ###
